@@ -71,6 +71,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="Password" placeholder="Password">
   </div>
+  <div class="form-group">
+	  <label>Security question :</label>
+	  <select class="form-control" id="question">
+		  <option>What is your first school name?</option>
+		  <option>What is your first mobile number?</option>
+		  <option>What is your mother's maiden name?</option>
+		  <option>What is your favourite novel?</option>
+				</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="answer">
+				</div>
   <small>Already Registered<a href="login.php" class="">LOGIN</a></small>
  <input type="button" class="btn btn-success" value="SIGNUP" onclick="user()">
   
@@ -195,10 +207,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var name=$("#usr").val();
     var email=$("#email").val();
     var mobile=$("#mobno").val();
-    var pass=$("#Password").val();
+	var pass=$("#Password").val();
+	var ques=$("#question").val();
+	var ans=$("#answer").val();
+	console.log(ques);
+	console.log(ans);
 
-
-    if(name!=""&& email!=""&&mobile!=""&&pass!="")
+    if(name!=""&& email!=""&&mobile!=""&&pass!=""&&ques!=""&&ans!="")
     {
     if(mobflag==1&&emaflag==1){
       //  console.log(name);
@@ -220,7 +235,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $('#msg').text("Already Registered!!");
           }
         }
-    })
+	})
+	
 
 
 
