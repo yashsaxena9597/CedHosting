@@ -25,6 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/modernizr.custom.97074.js"></script>
 <script src="js/jquery.chocolat.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
+
 <!--lightboxfiles-->
 <script type="text/javascript">
 	$(function() {
@@ -148,108 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			<!---brilliantly--->
 			<!---team--->
-				<div class="team">
-					<h3>our team is one of the best</h3>
-					<h5>Professionals that are always on top of their game</h5>
-					<div class="team-grids">
-						<section>
-							<ul id="da-thumbs" class="da-thumbs">
-								<li>
-									<a href="images/t1.jpg" class="b-link-stripe b-animate-go thick box">
-										<img src="images/t1.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t2.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t2.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t3.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t3.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t4.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t4.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>	
-									<a href="images/t5.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t5.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t6.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t6.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t7.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t7.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t8.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t8.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t9.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t9.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="images/t10.jpg" class="b-link-stripe b-animate-go  thick box">
-										<img src="images/t10.jpg" alt="" />
-										<div>
-											<h5>team</h5>
-											<span>non suscipit leo fringilla non suscipit leo fringilla molestie That’s how we set ourselves apart</span>
-										</div>
-									</a>
-								</li>
-							</ul>
-							<div class="clearfix"> </div>
-						</section>
-						
-					</div>
-				</div>
+				<!--  -->
 				<!---team--->
 				<!---prices--->
 					<div class="price-section">

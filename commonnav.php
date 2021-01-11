@@ -6,7 +6,7 @@
 								<i class="icon-bar"></i>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.html">Planet Hosting</a></h1>
+								<h1><a href="index.php" style="color:#e7663f">CED<span style="color:#585CA7">Hosting<span></a></h1>
 							</div>
 						</div>
 
@@ -15,7 +15,7 @@
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
 								<li><a href="about.php">About</a></li>
-								<li class="dropdown">
+								<!-- <li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<i class="caret"></i></a>
 										<ul class="dropdown-menu">
 											<li><a href="blog.php">Blog</a></li>
@@ -28,8 +28,9 @@
 											<li><a href="login.php">Login</a></li>
 											<li><a href="portfolio.php">Portfolio</a></li>
 										</ul>
-									</li>
+									</li> -->
 								<li><a href="services.php">Services</a></li>
+								
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
@@ -39,8 +40,12 @@
 										<li><a href="cmshosting.php">CMS Hosting</a></li>
 									</ul>			
 								</li>
-								<li><a href="codes.php">Codes</a></li>
+								<li><a href="pricing.php">Pricing</a></li>
+								<li><a href="blog.php">Blog</a></li>
+								
 								<li><a href="contact.php">Contact</a></li>
+								
+								<li><a href="login.php">Login</a></li>
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->

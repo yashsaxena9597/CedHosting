@@ -1,10 +1,4 @@
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -52,43 +46,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="register">
 		  	  <form> 
-				 <div class="register-top-grid">
-					<h3>personal information</h3>
-					 <div>
-						<span>First Name<label>*</label></span>
-						<input type="text"> 
-					 </div>
-					 <div>
-						<span>Last Name<label>*</label></span>
-						<input type="text"> 
-					 </div>
-					 <div>
-						 <span>Email Address<label>*</label></span>
-						 <input type="text"> 
-					 </div>
-					 <div class="clearfix"> </div>
-					   <a class="news-letter" href="#">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
-					   </a>
-					 </div>
-				     <div class="register-bottom-grid">
-						    <h3>login information</h3>
-							 <div>
-								<span>Password<label>*</label></span>
-								<input type="password">
-							 </div>
-							 <div>
-								<span>Confirm Password<label>*</label></span>
-								<input type="password">
-							 </div>
-					 </div>
+				<form  >
+   <div class="form-group">
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="usr" name="name" placeholder="Enter name...">
+</div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="button" onclick="sendEmail()" value="SendOTP" class="btn btn-primary" id="sendem" >
+    <div id="validate" style="display:none;"><input type=number name="otp" id="otp"><input type="button" value="Validate" onclick="validate()" class="btn btn-dark" ></div> 
+    <small id="sent"></small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Mobile Number</label>
+    <input type="number" class="form-control" id="mobno" aria-describedby="emailHelp" placeholder="Enter mobile number">
+    <small>  <input type="button" value="Send OTP" name="send"  onclick="sendotp()" class="btn btn-primary" id="senop">
+
+    <div id="verify" style="display:none;"> <input type=number name="otp" id="otp1"><input type="button" value="Verify" onclick="verify()" class="btn btn-dark" > </div>
+    <small id="notify"></small>
+   
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="Password" placeholder="Password">
+  </div>
+  <small>Already Registered<a href="login.php" class="">LOGIN</a></small>
+ <input type="button" class="btn btn-success" value="SIGNUP" onclick="user()">
+  
+</form>
 				</form>
-				<div class="clearfix"> </div>
-				<div class="register-but">
-				   <form>
-					   <input type="submit" value="submit">
-					   <div class="clearfix"> </div>
-				   </form>
+				
 				</div>
 		   </div>
 		 </div>
@@ -100,5 +88,152 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!---footer--->
 				<?php include 'footer.php';?>
 			<!---footer--->
+			<script>
+     var mobflag=0;
+     var emaflag=0;
+  function sendEmail(){
+    var email=$("#email").val();
+   
+    if(email!=""){
+      $.ajax({
+        url:"sendEmail.php",
+        type:"POST",
+
+        
+        data:{email:email},
+       
+        success:function(res){
+            
+           $('#sent').text("OTP sent successfully.");
+          console.log("Message sent successfully." );
+          $("#validate").css("display", "block");
+         
+          
+          otp=res;
+          
+        }
+    })
+  }
+  }
+  function validate()
+  { 
+    var otp=$("#otp").val();
+    if(otp!=""){
+      $.ajax({
+        url:"validate.php",
+        type:"POST",
+
+        
+        data:{otp:otp},
+       
+        success:function(res){
+            // $('#myForm')[0].reset();
+            if(res=="success"){
+            $('#sent').text("OTP verified.");
+            $("#validate").css("display", "none");
+            $("#sendem").prop('disabled', true);
+            $("#email").prop('readonly', true);
+            emaflag=1;
+            }else{
+              $('#sent').text("OTP not verified.");
+            }
+            console.log(res);
+        }
+    })
+  } 
+  }
+  function sendotp(){
+    var mobile=$("#mobno").val();
+   var otp;
+    if(mobile!=""){
+      $.ajax({
+        url:"sendotp.php",
+        type:"POST",
+
+        
+        data:{mobno:mobile},
+       
+        success:function(res){
+           
+           $('#notify').text("OTP sent successfully.");
+          console.log("Message sent successfully." );
+          $("#verify").css("display", "block");
+         
+          
+        }
+    })
+  }
+  }
+  function verify()
+  { 
+    var otp=$("#otp1").val();
+    if(otp!=""){
+      $.ajax({
+        url:"validate.php",
+        type:"POST",
+
+        
+        data:{otp:otp},
+       
+        success:function(res){
+            
+            if(res=="success"){
+              mobflag=1;
+            $('#notify').text("OTP verified.");
+            $("#verify").css("display", "none");
+            $("#senop").prop('disabled', true);
+            $("#mobno").prop('readonly', true);
+            }else{
+              $('#verify').text("OTP not verified.");
+            }
+            console.log(res);
+        }
+    })
+  } 
+  }
+  function user(){
+    var name=$("#usr").val();
+    var email=$("#email").val();
+    var mobile=$("#mobno").val();
+    var pass=$("#Password").val();
+
+
+    if(name!=""&& email!=""&&mobile!=""&&pass!="")
+    {
+    if(mobflag==1&&emaflag==1){
+      //  console.log(name);
+      //  console.log(email);
+      //  console.log(mobile);
+      //  console.log(pass);
+      $.ajax({
+        url:"user.php",
+        type:"POST",
+
+        
+        data:{name:name,mobileno:mobile,email:email,password:pass},
+       
+        success:function(res){
+          if(res="success"){
+          $('#msg').text("Signup success");
+          }
+          else{
+            $('#msg').text("Already Registered!!");
+          }
+        }
+    })
+
+
+
+
+     }
+     else{
+      $('#msg').text("Verify Your email as well as mobile number!!.");
+     }
+    }
+    else{
+      $('#msg').text("Complete the Signup process!!.");
+    }
+  }
+  </script>
 </body>
 </html>

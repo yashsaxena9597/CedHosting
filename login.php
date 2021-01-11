@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 login-left">
 									 <h3>new customers</h3>
 									 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-									 <a class="acount-btn" href="account.html">Create an Account</a>
+									 <a class="acount-btn" href="account.php">Create an Account</a>
 								</div>
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
