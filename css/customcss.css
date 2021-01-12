@@ -1,0 +1,45 @@
+.logo-color-left{
+    color: #e7663f ;
+}
+.logo-color-right{
+    color: #585CA7;
+}
+#fa-fa-font-size{
+    font-size: 18px;
+}
+.error-msg{
+    color: red;
+}
+#answer-signup{
+    display: none;
+}
+#error-password{
+    display: none;
+    color: #585CA7;
+    font-size: 11px;
+}
+.important-field{
+    color: red;
+}
+.dot-removal li{
+    list-style-type: none;
+}
+.dot-removal{
+    margin-left: 0px;
+    padding-left: 5px;
+}
+#deletecartproduct i {
+    font-size: x-large;
+}
+#checkoutbutton{
+    text-decoration: none;
+    color: #e7663f ;
+    padding: 10px 25px;
+    background-color:  #585CA7;
+    margin: 10px;
+    float: right;
+}
+#checkoutbutton:hover{
+    color: white;
+    background-color: green;
+}

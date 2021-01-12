@@ -46,15 +46,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
     <div class=" alert alert-success" id="msg"></div>
 			<div class="register">
-		  	  <form> 
+		  	 
 				<form  >
    <div class="form-group">
   <label for="usr">Name:</label>
-  <input type="text" class="form-control" id="usr" name="name" placeholder="Enter name...">
+  <input type="text" class="form-control" id="usr" name="name" placeholder="Enter name..." onblur="validation(this);" >
 </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" pattern=".+@gmail.com" required>
     <input type="button" onclick="sendEmail()" value="SendOTP" class="btn btn-primary" id="sendem" >
     <div id="validate" style="display:none;"><input type=number name="otp" id="otp"><input type="button" value="Validate" onclick="validate()" class="btn btn-dark" ></div> 
     <small id="sent"></small>
@@ -75,10 +75,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <div class="form-group">
 	  <label>Security question :</label>
 	  <select class="form-control" id="question">
-		  <option>What is your first school name?</option>
-		  <option>What is your first mobile number?</option>
-		  <option>What is your mother's maiden name?</option>
-		  <option>What is your favourite novel?</option>
+		  <option>What was your childhood nickname?</option>
+		  <option>What is the name of your favourite childhood friend?</option>
+		  <option>What was your favourite place to visit as a child?</option>
+		  <option>What was your dream job as a child?</option>
+      <option>What is your favourite teacher's nickname?</option>
 				</select>
 				</div>
 				<div class="form-group">
@@ -88,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <input type="button" class="btn btn-success" value="SIGNUP" onclick="user()">
   
 </form>
-				</form>
+			
 				
 				</div>
 		   </div>
@@ -103,11 +104,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!---footer--->
 			<script>
      var mobflag=0;
+     
      var emaflag=0;
   function sendEmail(){
     var email=$("#email").val();
+    var reEmail = /^(?:\.)*[^\s]+[a-zA-Z0-9\-]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!\.)){0,61}[a-zA-Z0-9]?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/;
+
+
+    if(!email.match(reEmail)){
+      $('#msg').text("Invalid Email address!!.");
+
+    }
+    
    
-    if(email!=""){
+     else if(email!=""){
       $.ajax({
         url:"sendEmail.php",
         type:"POST",
@@ -126,7 +136,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           
         }
     })
+  
   }
+  
   }
   function validate()
   { 
@@ -157,8 +169,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   }
   function sendotp(){
     var mobile=$("#mobno").val();
+    var mob = "^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$";
    var otp;
-    if(mobile!=""){
+   if(!mobile.match(mob)){
+      $('#msg').text("InvalidMobile number!!.");
+
+    }
+
+    else if(mobile!=""){
       $.ajax({
         url:"sendotp.php",
         type:"POST",
@@ -208,13 +226,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var name=$("#usr").val();
     var email=$("#email").val();
     var mobile=$("#mobno").val();
-	var pass=$("#Password").val();
-	var ques=$("#question").val();
-	var ans=$("#answer").val();
+  var pass=$("#Password").val();
+  var reg=/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? ])[a-zA-Z0-9!#$%&?]{8,16}$/;
+  var regname ="^[A-Za-z\s]{1,}[\ ]{0,1}[A-Za-z\s]{0,}$";
+  var ques=$("#question").val();
+  var regans ="^[^\s]+[-a-zA-Z\s]+([-a-zA-Z]+)*$" ;
+  var ans=$("#answer").val();
+  if(!ans.match(regans)){
+    $('#msg').text("Remove white spaces in the answer!!.");
+    
+  }
+      else if(!name.match(regname) )
+      {
+        $('#msg').text("Enter name in proper format!!.");
+      }
+  
+     else if(!pass.match(reg))
+      {
+        $('#msg').text("Enter password in proper format!!.");
+      }
+    
+    else if(name!=""&& email!=""&&mobile!=""&&pass!=""&&ques!=""&&ans!="")
 
-
-    if(name!=""&& email!=""&&mobile!=""&&pass!=""&&ques!=""&&ans!="")
     {
+      
     if(mobflag==1&&emaflag==1){
       //  console.log(name);
       //  console.log(email);
@@ -233,7 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
           }
           else{
-            $('#msg').text("Sign up unsuccessfull email or password may already exist!!.");
+            $('#msg').text("Sign up unsuccessfull email  may already exist!!.");
           }
         }
          
@@ -249,9 +284,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      }
     }
     else{
-      $('#msg').text("Complete the Signup process!!.");
+      $('#msg').text("Please fill to signup!!.");
     }
   }
+
+
+
+  function validation(check){
+        var reg ="^[A-Za-z\s]{1,}[\ ]{0,1}[A-Za-z\s]{0,}$" ;//regular
+
+        var nam=check.value;
+        if (!nam.match(reg) ) 
+        {
+          $('#msg').text('Invalid!!');
+
+          val=0;
+            return false;
+        }else{
+          $('#msg').text('');
+          return true;
+          val=1;
+        }
+
+        
+
+}
   </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<title>Cedhosting one solution for all your hosting problems</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	<!---header--->
 		<!---login--->
+		<div class="alert alert-success" id="msg"></div>
 			<div class="content">
 				<div class="main-1">
 					<div class="container">
@@ -57,14 +58,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<form method="POST">
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text"> 
+										<input type="text" id="email"> 
 									  </div>
 									  <div>
 										<span>Password<label>*</label></span>
-										<input type="password"> 
+										<input type="password" id="pass"> 
 									  </div>
 									  <a class="forgot" href="#">Forgot Your Password?</a>
-									  <input type="submit" value="Login">
+									  <input type="button" class="btn btn-primary" value="Login" onclick="login()">
 									</form>
 								</div>	
 								<div class="clearfix"> </div>
@@ -77,5 +78,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!---footer--->
 				<?php include 'footer.php';?>
 			<!---footer--->
+
+<script>
+function login(){
+	var email=$('#email').val();
+	var pass=$('#pass').val();
+	// console.log(email);
+	// console.log(pass);
+	$.ajax({
+        url:"signin.php",
+        type:"POST",
+
+        
+        data:{email:email,password:pass},
+       
+        success:function(res){
+		  console.log(res);
+		if(res==1){
+			$('#msg').text("You have been successfully logged in as user!!");
+			
+		}
+	else if(res==0){
+		$('#msg').text("You have been successfully logged in as admin!!");
+		window.location.href = "admin";
+	}else if(res==2){
+		$('#msg').text("You have been blocked by the admin!!");
+	}else{
+		$('#msg').text("Your username and password is incorrect!!");
+		
+	}
+}
+    })
+
+}
+</script>			
 </body>
 </html>
