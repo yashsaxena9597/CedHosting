@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Planet Hosting a Hosting Category Flat Bootstrap Responsive Website Template | Account :: w3layouts</title>
+<title>Ced hosting  a complete solution for all your hosting services..</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,6 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- registration -->
 	<div class="main-1">
 		<div class="container">
+    <div class=" alert alert-success" id="msg"></div>
 			<div class="register">
 		  	  <form> 
 				<form  >
@@ -210,8 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var pass=$("#Password").val();
 	var ques=$("#question").val();
 	var ans=$("#answer").val();
-	console.log(ques);
-	console.log(ans);
+
 
     if(name!=""&& email!=""&&mobile!=""&&pass!=""&&ques!=""&&ans!="")
     {
@@ -225,16 +225,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         type:"POST",
 
         
-        data:{name:name,mobileno:mobile,email:email,password:pass},
+        data:{name:name,mobileno:mobile,email:email,password:pass,question:ques,answer:ans},
        
         success:function(res){
-          if(res="success"){
-          $('#msg').text("Signup success");
+          if(res=='success'){
+            $('#msg').text("Sign up successfull login to procced to cart!!.");
+
           }
           else{
-            $('#msg').text("Already Registered!!");
+            $('#msg').text("Sign up unsuccessfull email or password may already exist!!.");
           }
         }
+         
 	})
 	
 

@@ -1,10 +1,5 @@
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -59,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
 									<p>If you have an account with us, please log in.</p>
-									<form>
+									<form method="POST">
 									  <div>
 										<span>Email Address<label>*</label></span>
 										<input type="text"> 
