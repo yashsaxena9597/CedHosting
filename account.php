@@ -256,14 +256,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       //  console.log(mobile);
       //  console.log(pass);
       $.ajax({
-        url:"user.php",
+        url:"loginhandler.php",
         type:"POST",
 
         
         data:{name:name,mobileno:mobile,email:email,password:pass,question:ques,answer:ans},
        
         success:function(res){
-          if(res=='success'){
+          console.log(res);
+          if(res=='3success'){
             $('#msg').text("Sign up successfull login to procced to cart!!.");
 
           }

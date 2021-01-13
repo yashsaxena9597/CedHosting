@@ -26,4 +26,15 @@ class tbl_user extends Dbcon{
         
     }
 
+    public function createaccount($name,$email,$pass,$status,$is,$mobile,$ques,$ans,$approvemail,$approvemob){
+        $sql="INSERT INTO tbl_user (email,name,mobile,email_approved,phone_approved,active,is_admin,password,security_question,security_answer) 
+    VALUES('$email','$name','$mobile',' $approvemail','$approvemob','$status','$is','$pass','$ques','$ans')";
+     $result=$this->conn->query($sql);
+     if($result){
+        return "success"; 
+    }else{
+       return "failed";
+    }
+    }
+
 }

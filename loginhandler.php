@@ -23,3 +23,19 @@ if(isset($_POST['email']) && isset($_POST['password']))
     }
     
     }
+
+    if(isset($_POST['email'])&& isset($_POST['mobileno'])){
+        $name=$_POST['name'];
+     $email=$_POST['email'];
+    
+    $status=1;
+    $is=0;
+     $mobile=$_POST['mobileno'];
+     $pass=$_POST['password'];
+     $ques=$_POST['question'];
+     $ans=$_POST['answer'];
+     $approvemail=1;
+     $approvemob=1;
+     $che=$user->createaccount( $name,$email,$pass,$status,$is,$mobile,$ques,$ans,$approvemail,$approvemob);
+     echo $che;
+    }
