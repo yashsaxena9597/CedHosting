@@ -14,7 +14,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <?php
+
 include "header.php";
+// echo "<pre>";
+// print_r ($_SESSION['user']);
+// echo "</pre>";
 ?>
   <!-- Main content -->
   <div class="main-content" id="panel">
@@ -218,7 +222,7 @@ include "header.php";
                     <img alt="Image placeholder" src="assets/img/theme/user-avatar.png">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Hello, <?php echo(isset($_SESSION['name'])) ? $_SESSION['name']: "Admin" ?></span>
+                    <span class="mb-0 text-sm  font-weight-bold">Hello, <?php echo(isset($_SESSION['user'])) ? $_SESSION['user'][0]['name']: "Admin" ?></span>
                   </div>
                 </div>
               </a>

@@ -9,7 +9,7 @@ class Dbcon{
         $this->servername="localhost";
         $this->username="root";
         $this->password="";
-        $this->dbname="CedHosting";
+        $this->dbname="Cedhosting";
     }
     public function createConnection(){
         $this->conn=new mysqli($this->servername,$this->username,$this->password,$this->dbname);

@@ -86,7 +86,7 @@ function login(){
 	// console.log(email);
 	// console.log(pass);
 	$.ajax({
-        url:"signin.php",
+        url:"loginhandler.php",
         type:"POST",
 
         
