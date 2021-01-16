@@ -17,9 +17,10 @@ if (isset($_POST['productadd'])) {
      }
 
 }if(isset($_POST['id'])&& isset($_POST['action'])){
+    
     $id=$_POST['id'];
     $action=$_POST['action'];
-   echo $action;
+  
      $data=$product->manageProductBYCategory($id, $action);
      if ($data=="true") {
                 echo json_encode("true");
@@ -31,6 +32,12 @@ if (isset($_POST['productadd'])) {
   
 }
 
+if (isset($_GET['showproducts'])) {
+    $data=$product->showProductsBYCategory();
+    print_r($data);
+  
+
+}
 
 
 
@@ -60,7 +67,9 @@ if (isset($_POST['productupdate'])) {
 if (isset($_POST['manageproductsbycategory'])) {
     $id=$_POST['id'];
     $action=$_POST['action'];
+    echo $action;
     $data=$product->manageProductsBYCategory($id, $action);
+    
     if ($data=="true") {
         echo json_encode("true");
     } elseif ($data=="false") {
@@ -109,6 +118,7 @@ if (isset($_POST['addtocart'])) {
         $_SESSION['cartdata'][]=[$data['prod_id'], $data['prod_name'], $data['mon_price'], $data['annual_price'], 1, "<a href='javascript:void(0)' data-id=".$data['prod_id']." id='deletecartproduct'><i class='fa fa-trash' aria-hidden='true'></i></a>"];
     }
     print_r($_SESSION['cartdata']);
+    // print_r($data);
 }
 if (isset($_POST['deletecartproduct'])) {
     $prodid=$_POST['prodid'];

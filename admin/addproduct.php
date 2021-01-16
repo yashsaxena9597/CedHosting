@@ -554,7 +554,7 @@ $product=new tbl_product();
                   </div>
                   <div class="text-center">
                   <input type="submit" class="btn btn-primary mt-4" 
-                  id="createcategory" value="Create Category" name="submit">
+                  id="createcategory" onclick="javascript:return confirm('Do you really want to create?');" value="Create Category" name="submit">
                 </div>
                 </div>
               </form>
@@ -587,7 +587,7 @@ $product=new tbl_product();
             $("select").addClass("is-invalid");
             $("#createcategory").prop('disabled', true);
             inputstatecount=0;
-            return false;
+            return false; 
           }
           else {
             $("select").removeClass("is-invalid");

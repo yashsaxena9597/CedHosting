@@ -112,7 +112,7 @@ class tbl_product
     }
     
     public function manageProductBYCategory($id, $action) 
-    {
+    {   
         if ($action=='edit') {
             $sql="SELECT * FROM `tbl_product` WHERE `id`='$id'";
             $data=$this->conn->query($sql);
@@ -181,17 +181,36 @@ class tbl_product
             return false;
         }
         if ($action=="delete") {
-            $sql="DELETE FROM `tbl_product_description` WHERE `prod_id`='$id'";
-            if ($this->conn->query($sql)) {
-                $sql="DELETE FROM `tbl_product` WHERE `id`='$id'";
-                if ($this->conn->query($sql)) {
-                    return true;
+            $sql="DELETE FROM `tbl_product` WHERE `id`='$id'";
+            $this->conn->query($sql);
+            $sql="SELECT * FROM `tbl_product` WHERE `prod_parent_id`='$id'";
+            $data=$this->conn->query($sql);
+            if ($data->num_rows>0) {
+                while ($row=$data->fetch_assoc()) {
+                    $id=$row['id'];
+                    $sql="DELETE FROM `tbl_product_description` WHERE `prod_id`='$id'";
+                    $this->conn->query($sql);
+                    $sql="DELETE FROM `tbl_product` WHERE `id`='$id'";
+                    $this->conn->query($sql);
                 }
-                return false;
             }
-            return false;
+            return true;
         }
     }
+    public function getSubCategory() 
+    {
+        $sql="SELECT * FROM `tbl_product` WHERE `prod_parent_id`='1' ";
+        $data=$this->conn->query($sql);
+        if ($data->num_rows>0) {
+            $arr=array();
+            while ($row=$data->fetch_assoc()) {
+                $arr[]=$row;
+            }
+            return $arr;
+        }
+        return false;
+    }
+
    
     public function getSubCategoryNav() 
     {

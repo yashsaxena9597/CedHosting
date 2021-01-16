@@ -314,7 +314,7 @@ include "header.php";
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                       <div class="input-group-prepend">
-                          <textarea class=" link"  placeholder="HTML" name="editor"></textarea>
+                          <textarea class="link"  placeholder="HTML" name="editor"></textarea>
                       </div>
                     </div>
                   </div>
@@ -326,7 +326,7 @@ include "header.php";
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4" id="createcategory">Create Category</button>
+                  <button type="button"  onclick="javascript:return confirm('Do you really want to create?');" class="btn btn-primary mt-4" id="createcategory">Create Category</button>
                 </div>
               </form>
             </div>
@@ -356,7 +356,7 @@ include "header.php";
                         
                     </tr> </thead>
                     
-                      <?php $data=$product->getSubCategoryNav();
+                      <?php $data=$product->getSubCategory();
                             if ($data!=false) {
                               for ($i=0;$i<count($data);$i++) {
                                  ?>
@@ -367,7 +367,7 @@ include "header.php";
                       
                       <td><?php if ($data[$i]['prod_available']==1){echo "Available";}else{echo "Not available";}?></td>
                       <td><?php echo $data[$i]['prod_launch_date']?></td>
-                      <td><button onclick="edit(<?php echo $data[$i]['id']?>)"class="btn btn-warning">Edit</button><button onclick=" del(<?php  echo $data[$i]['id'] ?> )" class="btn btn-danger">delete</button></td>
+                      <td><button data-toggle="modal" data-target="#exampleModalSignUp" onclick="edit(<?php echo $data[$i]['id']?>)"class="btn btn-warning">Edit</button><button onclick=" del(<?php  echo $data[$i]['id'] ?> )" class="btn btn-danger">delete</button></td>
 
                       </tr>
                               <?php } 
@@ -382,6 +382,9 @@ include "header.php";
 <!-- table display -->
 <div class="col-md-4">
     <!-- Modal -->
+    
+   
+
     <div class="modal fade" id="exampleModalSignUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
@@ -439,7 +442,7 @@ include "header.php";
                   <label class="mr-sm-2" for="inlineFormCustomSelect">Html</label>
                   <div class="input-group input-group-merge input-group-alternative">
                       <div class="input-group-prepend">
-                          <textarea class="editor form-group" placeholder="html" id="link-update"></textarea>
+                          <textarea class=" form-group" placeholder="html" id="link-update"></textarea>
                       </div>
                     </div>
                   </div>
@@ -467,6 +470,48 @@ include "header.php";
 
 <!--  -->
   <script>
+  $('#updatecategory').click(function(){
+    var productname=($('#productname-update').val()).trim();
+    var link=($('#link-update').val()).trim();
+    var availability=$('#availability-update').val();
+    var categoryid=$('#category-id-update').val();
+    var regproductname=/^(?![0-9]*$)([a-zA-Z]+\s?)*([0-9]+\.?)*$/;
+    if (availability=="Choose..." || productname=="") {
+      alert('please fill product name and availibility');
+    }
+    else if (!(productname.match(regproductname))) {
+      alert("please enter valid product name");
+    }
+    else if(!isNaN(productname)){
+      alert('product name can not be all numbers');
+    }
+    else {
+      $.ajax({
+        url: "handlerequest.php",
+        method: "post",
+        data: {
+          productname: productname,
+          link: link,
+          availability: availability,
+          id: categoryid,
+          updatecategory: true
+        },
+        success: function(msg){
+          if (msg){
+            alert("Category Successfully Updated");
+            location.reload();
+          }
+          else {
+            alert("failed updation");
+          }
+         
+        },
+        error: function(){
+          alert('Update Failed');
+        }
+      });
+    }
+  });
  
     $('#createcategory').click(function(){
       var productname=($('#productname').val()).trim();
@@ -512,7 +557,12 @@ include "header.php";
            ); 
     }
     function edit(id){
-      var action="edit";
+   
+      
+     
+   
+       var action="edit";
+      
       $.ajax({
           url:'handlerequest.php',
           method: 'Post',
@@ -521,8 +571,18 @@ include "header.php";
             action:action,
             
           },
+          dataType:'json',
           success:function(msg){
-            console.log(msg);
+            console.log(msg['html']);
+            var productname=msg['prod_name'];
+            
+            $('#productname-update').val(productname);
+             var link=msg['html'];
+             $('#link-update').val(link);
+               var categoryid=msg['id'];
+               $('#category-id-update').val(categoryid);
+                 var availability=msg['prod_available'];
+                 $('#availability-update').val(availability).attr('selected','selected');
           },
           error:function(){
             alert("error");
@@ -533,6 +593,8 @@ include "header.php";
     }
     function del(id){
       var action="delete";
+       var r= confirm("Do you really want to delete??");
+       if (r== true){
       $.ajax({
           url:'handlerequest.php',
           method: 'Post',
@@ -549,9 +611,36 @@ include "header.php";
             alert("error");
           }
           
-        });
+        });}
+        
       
     }
+    // function manageproductbycategory(action,id){
+    //   $.ajax({
+    //     url: 'handlerequest.php',
+    //     method: 'post',
+    //     data: {
+    //       id: id,
+    //       action: action,
+    //       manageproductbycategory: true
+    //     },
+    //     dataType:'json',
+    //     success: function(msg){
+         
+    //        console.log(msg);
+    //         // var productname=msg['prod_name'];
+    //         // $('#productname-update').val(productname);
+    //         // var link=msg['html'];
+    //         // $('#link-update').val(link);
+    //         // var categoryid=msg['id'];
+    //         // $('#category-id-update').val(categoryid);
+    //         // var availability=msg['prod_available'];
+    //         // $('#availability-update').val(availability).attr('selected','selected');
+
+    //       }
+    //     })
+    //   }
+    
     
   </script>
 <?php

@@ -260,7 +260,7 @@ $product=new tbl_product();
                     src="assets/img/theme/user-avatar.png">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">Hello, <?php echo(isset($_SESSION['admin'])) ? $_SESSION['admin'][2]: "Admin" ?></span>
+                    <span class="mb-0 text-sm  font-weight-bold">Hello, <?php echo(isset($_SESSION['user'])) ? $_SESSION['user'][0]['name']: "Admin" ?></span>
                   </div>
                 </div>
               </a>
@@ -695,6 +695,7 @@ $product=new tbl_product();
     $('#showProduct').on('click','#delete-product-by-category',function(){
       var id=$(this).data('id');
       var action="delete";
+      
       var r=confirm("are you sure you want to delete subcategory?");
       if (r){
         manageproductsbycategory(action,id);
@@ -702,6 +703,7 @@ $product=new tbl_product();
       
     });
     function manageproductsbycategory(action,id){
+      console.log(id);
       $.ajax({
         url: 'handlerequest.php',
         method: 'post',
@@ -712,6 +714,7 @@ $product=new tbl_product();
         },
         dataType:'json',
         success: function(msg){
+          console.log(msg);
           if (msg=="true"){
             alert('subcategory deleted successfully');
             location.reload();
@@ -734,10 +737,8 @@ $product=new tbl_product();
               $('#languagetechnology').val(msg['languagetechnology']);
               $('#mailbox').val(msg['mailbox']);
           }
-        },
-        error: function(){
-          alert("error in deletion");
         }
+       
       });
     }
     // --------------------------------------------------------------------------

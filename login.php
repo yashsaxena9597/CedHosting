@@ -96,6 +96,7 @@ function login(){
 		  console.log(res);
 		if(res==1){
 			$('#msg').text("You have been successfully logged in as user!!");
+			window.location.href="index.php";
 			
 		}
 	else if(res==0){
