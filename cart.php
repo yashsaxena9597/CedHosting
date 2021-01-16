@@ -76,6 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </tr>
                 </thead>
                 <tbody><?php
+                if(isset($_SESSION['cartdata']))
+                {
                 for ($i=0;$i<count($_SESSION['cartdata']);$i++) {
                     echo "<tr>";
                     echo "<td>"; print_r ($_SESSION['cartdata'][$i][0]);echo "</td>";
@@ -86,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     echo "<td>"; print_r ($_SESSION['cartdata'][$i][5]);echo "</td>";
                     echo "</tr>"; 
                 }
-                                ?>
+                       } else echo "<td>Cart is empty!!</td>";          ?>
                                 
                 </tbody>
                 </table>
