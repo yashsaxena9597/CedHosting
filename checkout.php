@@ -1,6 +1,7 @@
 <?php 
 include_once 'admin/tbl_product.php';
 $product=new tbl_product();
+$sum=0;
 
 ?>
 
@@ -27,21 +28,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.chocolat.js"></script>
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 
-<!--lightboxfiles-->
-<script type="text/javascript">
-	$(function() {
-	$('.team a').Chocolat();
-	});
-</script>	
-<script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
-						<script type="text/javascript">
-							$(function() {
-							
-								$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
 
-							});
-						</script>						
-<!--script-->
+<!--lightboxfiles-->
+
 </head>
 <body>
 	<!---header--->
@@ -63,9 +52,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</nav>
 			</div>
 		</div>
-        <!-- <?php  echo "<pre>"; print_r ($_SESSION['cartdata']);echo "</pre>"; ?> -->
+        
     <!-- cart table -->
     <div class="container-fluid">
+    <div id="msg "> </div>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -73,217 +63,132 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            <!-- Form -->
            <div class="container">
            <h2> Billing Information</h2>
+           <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <?php  for ($i=0;$i<count($_SESSION['cartdata']);$i++) {
+               $sum=$sum+$_SESSION['cartdata'][$i][2]; } ?>
+               <input type="hidden" id="price" class="form-control"  value="<?php echo $sum;?>" >
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <input type="text" id="fname" class="form-control" name="firstname" >
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" id="email" class="form-control" name="email" >
+            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+            <input type="text" id="adr" class="form-control" name="address" >
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input type="text" id="city" class="form-control" name="city">
 
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">3</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-            </li>
-          </ul>
-
-          <form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
-              <div class="col-md-4 mb-3">
+            
+              <div class="form-group">
                 <label for="state">State</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
+                <input type="text" id="state" class="form-control" name="state" >
               </div>
-              <div class="col-md-3 mb-3">
+              <div class="form-group">
                 <label for="zip">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                  Zip code required.
-                </div>
+                <input type="text" id="zip" class="form-control" name="zip" >
               </div>
             </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="same-address">
-              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="save-info">
-              <label class="custom-control-label" for="save-info">Save this information for next time</label>
-            </div>
-            <hr class="mb-4">
+          </div>
 
-            <h4 class="mb-3">Payment</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-          </form>
+          <div class="col-50">
+            <h3>Payment</h3>
+            <input type="button"  name="COD" value="COD" class="btn btn-success " onclick="Coc  ()" >
+            
+          
         </div>
-      </div>
-           </div>
-           <!-- Form -->
-
-            </div>
-        </div>
+        <label>
+          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+        </label>
+        
+      </form>
     </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+     
+    </div>
+  </div>
 </div>
+
+
+    
+</div>
+
 <!-- cart table -->
 			<!---footer--->
+      <div >
 			<?php include 'footer.php';?>
+      </div>
 			<!---footer--->
-			
-			
+      
+
+      <script src="https://www.paypal.com/sdk/js?client-id=ATQQwGvcJaEO-KijlB1GO12chmETAdD0bH6CsdUnssD-GBqj_IDbLD1-DKVPMp8T6r4NwulNHXEXHq_K"></script>
+<script>
+var price= document.getElementById("price").value;
+
+ paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: price
+          }
+        }]
+      });
+    }, 
+    onApprove: function (data, actions) {
+      //  window.location.assign("ordersuccess.php");  
+      return actions.order.capture().then(function(details) {
+        // This function shows a transaction success message to your buyer.
+        // console.log(details);
+        $.ajax({
+        url:"ordersuccess.php",
+        type:"POST",
+
+        
+        data:{details:details},
+       
+        success:function(res){
+          console.log(res);
+		 
+}
+    })
+      });
+  },
+  onCancel: function (data, actions) {
+    // Show a cancel page or return to cart
+    
+    document.getElementById("msg").innerHTML="Payment not done!!!";
+  },
+  }).render('.col-25');</script>
+			<script>
+      function Coc(){
+        window.location.assign("ordersuccess.php")
+        var name= document.getElementById("fname").value;
+        var email= document.getElementById("email").value;
+        var Address= document.getElementById("adr").value;
+        var City= document.getElementById("city").value;
+        var State= document.getElementById("state").value;
+        var zip= document.getElementById("zip").value;
+        $.ajax({
+        url:"ordersuccess.php",
+        type:"POST",
+
+        
+        data:{name:name,email:email,Address:Address,City:City,State:State,zip:zip},
+       
+        success:function(res){ 
+          
+		 
+}
+    })
+        
+      }
+      </script>
 </body>
 </html>
