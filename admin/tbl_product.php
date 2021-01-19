@@ -359,5 +359,6 @@ class tbl_product
         }
        
     }
+    // public function orderconfirm($transid,)
 }
 ?>

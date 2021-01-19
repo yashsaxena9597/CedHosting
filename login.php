@@ -34,7 +34,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<?php include 'commonnav.php'; ?> 
+			<?php include 'commonnav.php';
+			if (isset($_SESSION['user'])){
+				header('Location:index.php');
+			} ?> 
 					</div><!-- /.container-fluid -->
 				</nav>
 			</div>
